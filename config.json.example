@@ -1,0 +1,18 @@
+{
+  "faceit_api_key": "",
+  "elo_tolerance": 0,
+  "players": 10,
+  "players_team": 5,
+  "playernames": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ]
+}
