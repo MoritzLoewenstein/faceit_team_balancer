@@ -9,7 +9,7 @@
 `elo_tolerance`-> if the absolute difference of the total elo of each team is lower than this, the algorithm will end early (use this if you have performance issues)  
 `players` -> total players (values other than 10 not tested)  
 `players_team` -> players in 1 team (values other than 5 not tested)  
-`playernames` -> faceit players nicknames in an array of length `players`  
+`playernames` -> faceit nicknames in an array of length `players`  
 
 ## License
 
