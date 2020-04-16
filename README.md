@@ -73,6 +73,16 @@ every player is an object with these properties:
 ### test_players (type: array of strings)
 names of faceit accounts which will be used for the `test` command
 
+# FAQ
+
+## How does it search for the "fairest" matchup?
+This algorithm works in multiple steps
+1. Create all possible matchups
+2. Get the matchup with the lowest elo difference between to two teams
+
+`|team1_total_elo - team2_total_elo|` will be the smallest possible out of all matchups.  
+This procedure takes `20-100ms` on most devices, the faceit api requests will take much longer (between 2-3s).
+
 # License
 
 MIT © [Moritz Loewenstein](https://github.com/MoritzLoewenstein)
