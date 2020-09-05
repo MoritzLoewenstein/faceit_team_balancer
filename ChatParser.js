@@ -10,10 +10,10 @@ const capt = require("./commands/capt.js");
 
 const commands = {
   capt,
-  reset,
+  resetfaceit: reset,
   status,
   test,
-  cycle: cycleMode,
+  toggle: cycleMode,
 };
 
 module.exports = (msg) => {
