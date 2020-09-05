@@ -171,7 +171,7 @@ function startBalancer() {
     );
     console.timeEnd("balance_calc");
 
-    let time = parseFloat((performance.now() - start) / 1000).toFixed(3);
+    const time = ((performance.now() - start) / 1000).toFixed(3);
     channel.send(getAnnouncement(best_matchup, time));
     //movePlayers(best_matchup[0].players, config.discord_team1_voicechannel);
     //movePlayers(best_matchup[1].players, config.discord_team2_voicechannel);
@@ -199,7 +199,7 @@ function getAnnouncement(teams, time) {
 
   //* Team 1
   msg.push(
-    `TEAM 1 (AVG ELO: ${parseInt(teams[0].score / currentMode.team_size)})`
+    `TEAM 1 (AVG ELO: ${Math.trunc(teams[0].score / currentMode.team_size)})`
   );
   gatheredCaptains
     .filter((_, i) => i % 2 === 0)
@@ -213,7 +213,7 @@ function getAnnouncement(teams, time) {
 
   //* Team 2
   msg.push(
-    `TEAM 2 (AVG ELO: ${parseInt(teams[1].score / currentMode.team_size)})`
+    `TEAM 2 (AVG ELO: ${Math.trunc(teams[1].score / currentMode.team_size)})`
   );
   gatheredCaptains
     .filter((_, i) => i % 2 === 1)
