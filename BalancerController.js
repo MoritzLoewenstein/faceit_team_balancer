@@ -173,8 +173,6 @@ function startBalancer() {
 
     let time = parseFloat((performance.now() - start) / 1000).toFixed(3);
     channel.send(getAnnouncement(best_matchup, time));
-    //movePlayers(best_matchup[0].players, config.discord_team1_voicechannel);
-    //movePlayers(best_matchup[1].players, config.discord_team2_voicechannel);
     BalancerController.resetBalancer();
   });
 }
@@ -228,10 +226,6 @@ function sortPlayers(teams) {
   teams[0].players = teams[0].players.sort((a, b) => b.elo - a.elo);
   teams[1].players = teams[1].players.sort((a, b) => b.elo - a.elo);
   return teams;
-}
-
-function movePlayers(team, channel) {
-  team.map((player) => playersDiscord[player.name]?.voice?.setChannel(channel));
 }
 
 function* arrayRotator(i, arr) {
