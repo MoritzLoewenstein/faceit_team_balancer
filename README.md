@@ -1,5 +1,8 @@
 # Intro
-This is a discord bot which will create the fairest matchup of players if you enter 10 faceit account links.
+This is a discord bot which will create the fairest matchup of players if you enter their faceit account links.  
+You can create pretty much any configuration (any teamsize, any amount of players overall), the only limiting  
+factor is the computing power (hint: the algorithm is not that efficient).  
+Note: Currently limited to 2 teams of any size, should not be difficult to adapt this.
 
 # How to use
 1. Download/Clone this repository
