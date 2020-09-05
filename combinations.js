@@ -1,20 +1,16 @@
-module.exports = (a, min) => {
-  function fn(n, src, got, all) {
-    if (n == 0) {
-      if (got.length > 0) {
-        all[all.length] = got;
+module.exports = (arr, len) => {
+  function fn (combinationLen, srcArr, combinationArr, combinations) {
+    if (combinationLen === 0) {
+      if (combinationArr.length > 0) {
+        combinations[combinations.length] = combinationArr
       }
-      return;
+      return
     }
-    for (let j = 0; j < src.length; j++) {
-      fn(n - 1, src.slice(j + 1), got.concat([src[j]]), all);
+    for (let j = 0; j < srcArr.length; j++) {
+      fn(combinationLen - 1, srcArr.slice(j + 1), combinationArr.concat([srcArr[j]]), combinations)
     }
-    return;
   }
-  let all = [];
-  for (let i = min; i < a.length; i++) {
-    fn(i, a, [], all);
-  }
-  all.push(a);
-  return all;
+  const all = []
+  fn(len, arr, [], all)
+  return all
 };

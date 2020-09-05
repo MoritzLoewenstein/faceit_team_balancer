@@ -12,6 +12,8 @@ This is a discord bot which will create the fairest matchup of players if you en
 1. `reset` this command will reset the player selection process
 2. `status` this command will display the current status
 3. `test` if you specified `test_players` in config, this will create two teams out of these players
+4. `toggle` cycle through modes
+5. `capt` adds author to captains (only available in modes with captains)
 
 # Options
 
@@ -53,16 +55,24 @@ your faceit api key
 ### elo_tolerance (type: integer)
 if the absolute difference of the total elo of each team is lower than this, the algorithm will end early (use this if you have performance issues).
 
-### players (type: integer)
-default: 10  
-total players (values other than 10 not tested/recommended)
+### modes (type: array of objects)
+Set default mode with `default_mode`.
+Example:  
+```
+{
+    "name": "5vs5", //should be unique
+    "players": 10, //amount of players
+    "team_size": 5, //players mod team_size has to be 0
+    "captains": 0, //(players / team_size) mod captains has to be 0
+    "pre_selected_players": true, //are there pre_selected_players available in this mode?
+    "pre_selected_captains": false //are there pre_selected_captains available in this mode?
+},
+```
 
-### players_team (type: integer)
-default: 5  
-players in 1 team (values other than 5 not tested/recommended)
-
-### pre_selected_players (type: array of objects)
-players which will be included in every lobby without sending their faceit link  
+### pre_selected_players (type: object of arrays)
+Object with an array for each `mode` (key is `mode.name`).  
+Only available when `mode.pre_selected_players` is true.  
+Players which will be included without sending their faceit link,  
 every player is an object with these properties:  
 ```JSON
 {
@@ -70,8 +80,11 @@ every player is an object with these properties:
     "discord_id": "123456789"
 }
 ```
-### test_players (type: array of strings)
-names of faceit accounts which will be used for the `test` command
+### pre_selected_captains (type: object of arrays)
+Object with an array for each `mode` (key is `mode.name`).  
+Only available when `mode.pre_selected_captains` is true.  
+Captains which will be included without sending their faceit link,  
+every captain is a discordid as string.  
 
 # FAQ
 
@@ -79,6 +92,7 @@ names of faceit accounts which will be used for the `test` command
 This algorithm works in multiple steps
 1. Create all possible matchups
 2. Get the matchup with the lowest elo difference between to two teams
+   - early exit if difference is smaller than `elo_tolerance`
 
 `|team1_total_elo - team2_total_elo|` will be the smallest possible out of all matchups.  
 This procedure takes `20-100ms` on most devices, the faceit api requests will take much longer (between 2-3s).
