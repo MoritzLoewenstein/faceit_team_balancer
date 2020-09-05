@@ -19,17 +19,17 @@ This is a discord bot which will create the fairest matchup of players if you en
 
 ## Discord
 
-### discord_bot_token (type: string)
+### discord_bot_token (string)
 your discord bot token  
 
-### discord_channel_id (type: string)
+### discord_channel_id (string)
 the channel in which the bot will be active
 
-### discord_command_prefix (type: string)
+### discord_command_prefix (string)
 default: "!"  
 the command prefix, e. g. `!status`
 
-### discord_reactions (type: object)
+### discord_reactions (object of discord reactions)
 
 default:
 ```JSON
@@ -49,13 +49,13 @@ default:
 reactions which will be applied to the message of the player (first player -> `1️⃣`)
 
 ## Other
-### faceit_api_key (type: string)
+### faceit_api_key (string)
 your faceit api key
 
-### elo_tolerance (type: integer)
+### elo_tolerance (number)
 if the absolute difference of the total elo of each team is lower than this, the algorithm will end early (use this if you have performance issues).
 
-### modes (type: array of objects)
+### modes (array of mode configs)
 Set default mode with `default_mode`.
 Example:  
 ```
@@ -69,9 +69,9 @@ Example:
 },
 ```
 
-### pre_selected_players (type: object of arrays)
+### pre_selected_players (object of player arrays)
+Only enabled when `mode.pre_selected_players` is true.  
 Object with an array for each `mode` (key is `mode.name`).  
-Only available when `mode.pre_selected_players` is true.  
 Players which will be included without sending their faceit link,  
 every player is an object with these properties:  
 ```JSON
@@ -80,9 +80,9 @@ every player is an object with these properties:
     "discord_id": "123456789"
 }
 ```
-### pre_selected_captains (type: object of arrays)
+### pre_selected_captains (object of discordid arrays)
+Only enabled when `mode.pre_selected_captains` is true.  
 Object with an array for each `mode` (key is `mode.name`).  
-Only available when `mode.pre_selected_captains` is true.  
 Captains which will be included without sending their faceit link,  
 every captain is a discordid as string.  
 
